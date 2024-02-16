@@ -1,0 +1,387 @@
+// first program in SQL simple create table and insert values the select values 
+
+CREATE TABLE student (
+  id INT PRIMARY KEY ,
+  name VARCHAR(50),
+  age INT NOT NULL 
+  );
+  
+  INSERT INTO student (id,name,age)
+  VALUES 
+  (1,"Raj",23),
+  (2,"Sunny",22),
+  (3,"Gaurav",20);
+  
+  SELECT * FROM student ;
+
+// output of above example 
+id	name	age	
+1	Raju	23	
+2	Sunny	22	
+3	Gaurav	20	
+
+
+
+// If we want to give default value of any column...
+
+CREATE TABLE student (
+  id INT PRIMARY KEY ,
+  name VARCHAR(50),
+  age INT NOT NULL ,
+  salary INT DEFAULT 2700
+  );
+  
+  INSERT INTO student (id,name,age)
+  VALUES 
+  (1,"Raj",23),
+  (2,"Sunny",22),
+  (3,"Gaurav",20);
+  
+  SELECT * FROM student ;
+
+  //output of above example is 
+  id    name	age	salary
+  1	   Raju	    23	2700
+  2	  Sunny	    22	2700
+  3	  Gaurav	20	2700
+
+
+
+// A simple example for many operations 
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+SELECT name , marks FROM student ;
+
+// SELECT DISTINCT cite FROM student :unique city is the output by using this
+
+//output above code :
+name	marks
+raj	    22
+parash	23
+riya	24
+kanis	25
+rahul	26
+manoj	27
+
+
+// use of where clouse 
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+SELECT * FROM student Where marks > 24;
+
+// out put of upper code 
+
+rollno	name	marks	grade	city
+4	  kanis	     25	      A	    delhi
+5	  rahul	     26	      F	    delhi
+6	  manoj	     27       B	    delhi
+
+// use of   IN , BETWEEN ,AND ,OR,NOT : use self
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+SELECT * FROM student Where marks > 23  AND city  = "mumbai" ;
+
+// output of the above code id :
+rollno	name	marks	grade	city
+3	   riya	     24	     B	   mumbai
+
+// We use limit clouse for give a limit like below example onle 3 row will be the answer 
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+SELECT * FROM student LIMIT 3 ;
+
+
+// output of above code :
+rollno	name	marks	grade	 city
+1	    raj	    22	     C	     pune
+2	    parash	23	     A	     mumbai
+3	    riya	24	     B	     mumbai
+
+
+// use for decending(DESC) and accending(ASC) order 
+
+
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+SELECT * FROM student ORDER BY city ASC  ;
+
+// output of above code :
+rollno	name	marks	grade	city
+4	    kanis	 25	     A	    delhi
+5	    rahul	 26    	 F	    delhi
+6	    manoj	 27  	 B	    delhi
+2	    parash	 23	     A	    mumbai
+3	    riya	 24	     B	    mumbai
+1	    raj	     22      C	    pune
+
+// Aggregate function : COUNT,MAX,MIN,SUM,AVG gives a single value always :
+
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+SELECT MIN(marks) FROM student   ;
+
+// output of above example 
+22 
+
+// use group by clause : if we want make a group from our table 
+
+
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+SELECT city,count(rollno)
+FROM student 
+GROUP BY city   ;
+
+// output of above example :
+city	count(rollno)
+delhi	    3
+mumbai	    2
+pune	    1
+
+
+
+// use of having clause : 
+
+
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+SELECT city,count(rollno)
+FROM student 
+GROUP BY city 
+HAVING MAX(marks)>22  ;
+
+// output of above example 
+city	count(rollno)
+delhi	  3
+mumbai	  2
+
+
+// all clause in one questions:
+
+
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+SELECT city,count(rollno)
+FROM student 
+WHERE grade = "A"
+GROUP BY city 
+HAVING MAX(marks)>=22
+ORDER BY city DESC  ;
+
+
+//output of above example 
+city	count(rollno)
+mumbai	  1
+delhi	  1
+
+// table related queries 
+
+
+
+CREATE TABLE student (
+ rollno INT PRIMARY KEY, 
+ name VARCHAR(50), 
+ marks INT NOT NULL, 
+ grade VARCHAR(1), 
+ city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno, name, marks, grade, city)
+VALUES
+(1,"raj",22,"C","pune"),
+(2,"parash",23,"A","mumbai"),
+(3,"riya",24,"B","mumbai"), 
+(4,"kanis",25,"A","delhi"),
+(5,"rahul",26,"F","delhi"),
+(6,"manoj",27,"B","delhi");
+
+
+
+UPDATE student 
+SET grade = "0"
+WHERE grade = "A";
+
+SELECT * FROM student ;
+
+// output of above example 
+rollno	name	marks	grade	city
+1	   raj	    22	    C	    pune
+2	   parash	23	    0	    mumbai
+3	   riya	    24	    B	    mumbai
+4	   kanis	25	    0	    delhi
+5	   rahul	26	    F	    delhi
+6	   manoj	27	    B	    delhi
+
+
+
+
+
+
+
+
+
+
+
